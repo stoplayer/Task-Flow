@@ -1,0 +1,113 @@
+<div class="update-task-container">
+    <!-- Back Navigation -->
+    <div class="back-navigation">
+      <button class="back-button" (click)="goBack()">
+        <i class="material-icons">arrow_back</i>
+        Back to Task Details
+      </button>
+    </div>
+  
+    <!-- Main Content -->
+    <div class="update-form" *ngIf="!isLoading; else loadingTemplate">
+      <h2>Update Task</h2>
+  
+      <div class="task-info">
+        <!-- Task Name -->
+        <div class="info-group">
+          <label>Task Name</label>
+          <div class="content-box">
+            <input
+              type="text"
+              [(ngModel)]="taskData.name"
+              class="edit-input"
+              placeholder="Enter task name"
+            />
+          </div>
+        </div>
+  
+        <!-- Description -->
+        <div class="info-group">
+          <label>Description</label>
+          <div class="content-box description">
+            <textarea
+              [(ngModel)]="taskData.description"
+              class="edit-input description"
+              rows="4"
+              placeholder="Enter task description"
+            ></textarea>
+          </div>
+        </div>
+  
+        <!-- Project -->
+        <div class="info-group">
+          <label>Project</label>
+          <div class="content-box">
+            <i class="material-icons">work_outline</i>
+            {{ taskData.projectName }}
+          </div>
+        </div>
+  
+        <!-- Estimated End Time -->
+        <div class="info-group">
+          <label>Estimated End Time</label>
+          <div class="content-box">
+            <i class="material-icons">schedule</i>
+            <input
+              type="datetime-local"
+              [(ngModel)]="taskData.estimatedEndtime"
+              class="edit-input"
+            />
+          </div>
+        </div>
+  
+        <!-- Priority -->
+        <div class="info-group">
+          <label>Priority</label>
+          <div class="content-box" [class.priority-high]="taskData.priority === 'HIGH'">
+            <i class="material-icons">priority_high</i>
+            <select [(ngModel)]="taskData.priority" class="edit-input">
+              <option value="LOW">LOW</option>
+              <option value="MEDIUM">MEDIUM</option>
+              <option value="HIGH">HIGH</option>
+            </select>
+          </div>
+        </div>
+  
+        <!-- Status -->
+        <div class="info-group">
+          <label>Status</label>
+          <div class="status-select-container">
+            <select [(ngModel)]="taskData.status" name="status" class="status-select">
+              <option *ngFor="let status of statuses" [value]="status">
+                {{ status }}
+              </option>
+            </select>
+            <i class="material-icons status-icon">
+              {{
+                taskData.status === 'COMPLETED' ? 'check_circle' :
+                taskData.status === 'IN_PROGRESS' ? 'pending' : 'schedule'
+              }}
+            </i>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Submit Button -->
+      <div class="form-actions">
+        <button type="button" class="submit-btn" (click)="updateTask()">
+          <i class="material-icons">save</i>
+          Update Task
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #loadingTemplate>
+    <div class="loading">
+      <div class="loading-content">
+        <i class="material-icons rotating">sync</i>
+        <p>Loading task details...</p>
+      </div>
+    </div>
+  </ng-template>
+  

@@ -1,0 +1,98 @@
+<div class="sidebar" [class.collapsed]="isCollapsed">
+    <div class="sidebar-header">
+    <div class="logo">
+        <i class="material-icons logo-icon">rocket_launch</i>
+        <img 
+            *ngIf="!isCollapsed" 
+            src="assets/headlogo.png" 
+            class="logo-text" 
+            alt="logo text"
+        >
+    </div>
+    <button class="toggle-btn" (click)="toggleSidebar()">
+        <i class="material-icons">{{isCollapsed ? 'menu' : 'menu_open'}}</i>
+    </button>
+</div>
+
+
+    <div class="user-profile" *ngIf="!isCollapsed">
+        <div class="avatar">
+            <img [src]="userImg" alt="User Avatar">
+            <span class="status-dot"></span>
+        </div>
+        <div class="user-info">
+            <h4>{{userName}}</h4>
+            <p>Project Manager</p>
+        </div>
+    </div>
+
+    <nav class="nav-menu">
+        <div class="menu-section">
+            <span class="menu-label" *ngIf="!isCollapsed">MAIN MENU</span>
+
+            <a routerLink="/dashboard/tasks" routerLinkActive="active" class="nav-item">
+                <div class="icon-container">
+                    <i class="material-icons">dashboard</i>
+                </div>
+                <span class="nav-text" *ngIf="!isCollapsed">Dashboard</span>
+                <div class="tooltip" *ngIf="isCollapsed">Dashboard</div>
+            </a>
+
+            
+            <a routerLink="/dashboard/create-project" routerLinkActive="active" class="nav-item">
+                <div class="icon-container">
+                    <i class="material-icons">add_task</i>
+                </div>
+                <span class="nav-text" *ngIf="!isCollapsed">Create project</span>
+                <div class="tooltip" *ngIf="isCollapsed">Create project</div>
+            </a>
+
+
+            <a routerLink="/dashboard/overdue-project" routerLinkActive="active" class="nav-item">
+                <div class="icon-container">
+                    <i class="material-icons">warning</i>
+                    <span class="notification-badge">5</span>
+                </div>
+                <span class="nav-text" *ngIf="!isCollapsed">Overdue Projects </span>
+                <div class="tooltip" *ngIf="isCollapsed">Overdue Projects</div>
+            </a>
+
+            <a routerLink="/dashboard/calendar" routerLinkActive="active" class="nav-item">
+                <div class="icon-container">
+                    <i class="material-icons">calendar_today</i>
+                </div>
+                <span class="nav-text" *ngIf="!isCollapsed">Calendar</span>
+                <div class="tooltip" *ngIf="isCollapsed">Calendar</div>
+            </a>
+        </div>
+
+
+
+        <div class="menu-section">
+            <span class="menu-label" *ngIf="!isCollapsed">SETTINGS</span>
+
+            <a routerLink="/dashboard/profile" routerLinkActive="active" class="nav-item">
+                <div class="icon-container">
+                    <i class="material-icons">person</i>
+                </div>
+                <span *ngIf="!isCollapsed">Profile</span>
+                <div class="tooltip" *ngIf="isCollapsed">Profile</div>
+            </a>
+
+            <a routerLink="/dashboard/settings" routerLinkActive="active" class="nav-item">
+                <div class="icon-container">
+                    <i class="material-icons">settings</i>
+                </div>
+                <span *ngIf="!isCollapsed">Settings</span>
+                <div class="tooltip" *ngIf="isCollapsed">Settings</div>
+            </a>
+        </div>
+    </nav>
+
+    <div class="sidebar-footer" *ngIf="!isCollapsed">
+        <button class="logout-btn" (click)="signOut()">
+            <i class="material-icons">logout</i>
+            <span>Logout</span>
+        </button>
+    </div>
+</div>

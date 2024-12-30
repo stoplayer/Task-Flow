@@ -1,0 +1,169 @@
+<!-- update-project-progress.component.html -->
+<div class="update-project-container">
+  <!-- Back Button -->
+  <div class="back-button">
+    <button routerLink="/dashboard">
+      <i class="material-icons">arrow_back</i>
+      Back to Dashboard
+    </button>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading" *ngIf="isLoading">
+    <i class="material-icons">hourglass_empty</i>
+    Loading project details...
+  </div>
+
+  <!-- Main Content -->
+  <div class="content-wrapper" *ngIf="!isLoading && project">
+    <!-- Project Header -->
+    <div class="project-header">
+      <h2>{{ project.name }}</h2>
+      <span class="project-status">{{ project.status }}</span>
+    </div>
+
+    <!-- Project Sections -->
+    <div class="project-sections">
+      <!-- Project Details Section -->
+      <section class="details-section">
+        <div class="section-header">
+          <h3>Project Details</h3>
+          <button class="edit-btn" (click)="startEditing()" *ngIf="!isEditingDetails">
+            <i class="material-icons">edit</i>
+            Edit Details
+          </button>
+        </div>
+
+        <!-- View Mode -->
+        <div class="details-content" *ngIf="!isEditingDetails">
+          <div class="detail-item">
+            <span class="label">Description</span>
+            <p>{{ project.description }}</p>
+          </div>
+          <div class="detail-item">
+            <span class="label">Due Date</span>
+            <p>{{ project.estimatedEndtime | date:'mediumDate' }}</p>
+          </div>
+          <div class="detail-item budget">
+            <span class="label">Budget</span>
+            <p>{{ project.budget | currency }}</p>
+          </div>
+        </div>
+
+        <!-- Edit Mode -->
+        <div class="details-content edit-mode" *ngIf="isEditingDetails">
+          <div class="detail-item">
+            <span class="label">Description</span>
+            <textarea [(ngModel)]="editForm.description" rows="3" placeholder="Enter project description">
+            </textarea>
+          </div>
+          <div class="detail-item">
+            <span class="label">Due Date</span>
+            <input type="date" [(ngModel)]="editForm.estimatedEndtime">
+          </div>
+          <div class="detail-item">
+            <span class="label">Budget</span>
+            <input type="number" [(ngModel)]="editForm.budget" placeholder="Enter project budget">
+          </div>
+          <div class="edit-actions">
+            <button class="cancel-btn" (click)="cancelEditing()">
+              <i class="material-icons">close</i>
+              Cancel
+            </button>
+            <button class="save-btn" (click)="saveProjectDetails()">
+              <i class="material-icons">save</i>
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Progress Section -->
+      <section class="progress-section">
+        <h3>Project Progress</h3>
+        <div class="progress-content">
+          <div class="current-progress">
+            <span class="label">Current Progress</span>
+            <div class="progress-bar">
+              <div class="progress" [style.width.%]="project.progress"></div>
+              <span class="progress-value">{{ project.progress }}%</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Team Section -->
+      <section class="team-section">
+        <h3>Project Team</h3>
+        <div class="team-content">
+          <div class="member-list" *ngIf="project.teamMembers.length > 0">
+            <div class="member-item" *ngFor="let member of project.teamMembers">
+              <div class="member-avatar">
+                <img [src]="member.avatar || 'assets/default-avatar.png'" [alt]="member.name">
+              </div>
+              <span class="member-name">{{ member.name }}</span>
+              <button class="remove-member-btn" (click)="confirmDelete(member, $event)">
+                <i class="material-icons">close</i>
+              </button>
+            </div>
+          </div>
+          <div class="add-member">
+            <button class="add-member-btn" (click)="toggleUsersList()">
+              <i class="material-icons">person_add</i>
+              Add Team Member
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- Add Member Popup -->
+<div class="popup-overlay" *ngIf="showUsersList" (click)="toggleUsersList()">
+  <div class="popup-content" (click)="$event.stopPropagation()">
+    <div class="popup-header">
+      <h3>Add Team Member</h3>
+      <button class="close-btn" (click)="toggleUsersList()">
+        <i class="material-icons">close</i>
+      </button>
+    </div>
+    <div class="popup-body">
+      <div class="search-box">
+        <i class="material-icons">search</i>
+        <input type="text" [(ngModel)]="searchQuery" placeholder="Search users...">
+      </div>
+      <div class="users-list">
+        <div class="user-item" *ngFor="let user of filterUsers()" [class.disabled]="isUserInTeam(user.id)"
+          (click)="!isUserInTeam(user.id) && selectUser(user)">
+          <div class="user-avatar">
+            <img [src]="user.avatar || 'assets/default-avatar.png'" [alt]="user.name">
+          </div>
+          <div class="user-info">
+            <span class="user-name">{{ user.name }}</span>
+            <span class="user-status" *ngIf="isUserInTeam(user.id)">Already in team</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Popup -->
+<div class="popup-overlay" *ngIf="showDeleteConfirm" (click)="cancelDelete()">
+  <div class="popup-content delete-confirm" (click)="$event.stopPropagation()">
+    <div class="popup-header">
+      <h3>Remove Team Member</h3>
+      <button class="close-btn" (click)="cancelDelete()">
+        <i class="material-icons">close</i>
+      </button>
+    </div>
+    <div class="popup-body">
+      <p>Are you sure you want to remove <strong>{{ userToDelete?.name }}</strong> from the team?</p>
+      <div class="confirm-actions">
+        <button class="cancel-btn" (click)="cancelDelete()">Cancel</button>
+        <button class="delete-confirm-btn" (click)="removeTeamMember()">Remove</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,604 @@
+.update-project-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+    color: #EEEEEE;
+
+    .back-button {
+        margin-bottom: 24px;
+
+        button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: none;
+            color: #00ADB5;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background: rgba(0, 173, 181, 0.1);
+            }
+        }
+    }
+
+    .content-wrapper {
+        background: #393E46;
+        border-radius: 12px;
+        overflow: hidden;
+
+        .project-header {
+            padding: 24px;
+            background: #222831;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            h2 {
+                margin: 0;
+                color: #00ADB5;
+                font-size: 24px;
+            }
+
+            .project-status {
+                background: rgba(0, 173, 181, 0.1);
+                color: #00ADB5;
+                padding: 6px 12px;
+                border-radius: 20px;
+                font-size: 14px;
+            }
+        }
+
+        .project-sections {
+            padding: 24px;
+            display: grid;
+            gap: 24px;
+
+            section {
+                background: #222831;
+                border-radius: 8px;
+                padding: 20px;
+
+                h3 {
+                    margin: 0 0 16px 0;
+                    color: #00ADB5;
+                    font-size: 18px;
+                }
+
+                .label {
+                    color: rgba(238, 238, 238, 0.6);
+                    font-size: 14px;
+                    display: block;
+                    margin-bottom: 8px;
+                }
+            }
+                        // In your update-project-progress.component.scss
+            
+                        .details-section {
+                            .section-header {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                margin-bottom: 20px;
+            
+                                .edit-btn {
+                                    background: transparent;
+                                    border: 1px solid #00ADB5;
+                                    color: #00ADB5;
+                                    padding: 6px 12px;
+                                    border-radius: 4px;
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 6px;
+                                    cursor: pointer;
+                                    transition: all 0.3s ease;
+            
+                                    &:hover {
+                                        background: rgba(0, 173, 181, 0.1);
+                                    }
+            
+                                    i {
+                                        font-size: 18px;
+                                    }
+                                }
+                            }
+            
+                            .details-content {
+                                &.edit-mode {
+                                    .detail-item {
+                                        margin-bottom: 20px;
+            
+                                        textarea,
+                                        input {
+                                            width: 100%;
+                                            background: #393E46;
+                                            border: 1px solid rgba(238, 238, 238, 0.1);
+                                            color: #EEEEEE;
+                                            padding: 8px 12px;
+                                            border-radius: 4px;
+                                            font-family: inherit;
+                                            font-size: 14px;
+            
+                                            &:focus {
+                                                outline: none;
+                                                border-color: #00ADB5;
+                                            }
+                                        }
+            
+                                        textarea {
+                                            resize: vertical;
+                                            min-height: 100px;
+                                        }
+                                    }
+            
+                                    .edit-actions {
+                                        display: flex;
+                                        gap: 12px;
+                                        justify-content: flex-end;
+                                        margin-top: 24px;
+            
+                                        button {
+                                            display: flex;
+                                            align-items: center;
+                                            gap: 6px;
+                                            padding: 8px 16px;
+                                            border-radius: 4px;
+                                            cursor: pointer;
+                                            transition: all 0.3s ease;
+            
+                                            i {
+                                                font-size: 18px;
+                                            }
+                                        }
+            
+                                        .cancel-btn {
+                                            background: transparent;
+                                            border: 1px solid rgba(238, 238, 238, 0.1);
+                                            color: #EEEEEE;
+            
+                                            &:hover {
+                                                background: rgba(238, 238, 238, 0.1);
+                                            }
+                                        }
+            
+                                        .save-btn {
+                                            background: #00ADB5;
+                                            border: none;
+                                            color: #EEEEEE;
+            
+                                            &:hover {
+                                                background: darken(#00ADB5, 10%);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+            
+                            .detail-item {
+                                .label {
+                                    color: rgba(238, 238, 238, 0.6);
+                                    font-size: 14px;
+                                    display: block;
+                                    margin-bottom: 8px;
+                                }
+            
+                                p {
+                                    margin: 0;
+                                    line-height: 1.5;
+                                    color: #EEEEEE;
+                                }
+                            }
+                        }
+
+            // Progress Section Styles
+            .progress-section {
+                .progress-content {
+                    .current-progress {
+                        margin-bottom: 24px;
+
+                        .progress-bar {
+                            height: 8px;
+                            background: rgba(238, 238, 238, 0.1);
+                            border-radius: 4px;
+                            position: relative;
+                            margin-top: 12px;
+
+                            .progress {
+                                position: absolute;
+                                left: 0;
+                                top: 0;
+                                height: 100%;
+                                background: #00ADB5;
+                                border-radius: 4px;
+                                transition: width 0.3s ease;
+                            }
+
+                            .progress-value {
+                                position: absolute;
+                                right: 0;
+                                top: -20px;
+                                font-size: 14px;
+                            }
+                        }
+                    }
+
+                    .progress-input {
+                        display: flex;
+                        gap: 12px;
+
+                        input {
+                            flex: 1;
+                            background: #393E46;
+                            border: 1px solid rgba(238, 238, 238, 0.1);
+                            color: #EEEEEE;
+                            padding: 8px 12px;
+                            border-radius: 4px;
+
+                            &:focus {
+                                outline: none;
+                                border-color: #00ADB5;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Team Section Styles
+            .team-section {
+                .team-content {
+                    .member-list {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 12px;
+                        margin-bottom: 24px;
+
+                        .member-item {
+                            position: relative;
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                            background: #393E46;
+                            padding: 8px 12px;
+                            border-radius: 20px;
+
+                            .member-avatar {
+                                width: 24px;
+                                height: 24px;
+                                border-radius: 50%;
+                                overflow: hidden;
+
+                                img {
+                                    width: 100%;
+                                    height: 100%;
+                                    object-fit: cover;
+                                }
+                            }
+
+                            .member-name {
+                                font-size: 14px;
+                                margin-right: 24px; // Space for remove button
+                            }
+
+                            .remove-member-btn {
+                                position: absolute;
+                                right: -8px;
+                                top: -8px;
+                                width: 20px;
+                                height: 20px;
+                                padding: 0;
+                                background: #222831;
+                                border: 2px solid #393E46;
+                                border-radius: 50%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                opacity: 0;
+                                transition: all 0.2s ease;
+
+                                i {
+                                    font-size: 14px;
+                                    color: #EEEEEE;
+                                }
+
+                                &:hover {
+                                    background: #e74c3c;
+                                    border-color: #e74c3c;
+                                }
+                            }
+
+                            &:hover {
+                                .remove-member-btn {
+                                    opacity: 1;
+                                }
+                            }
+                        }
+                    }
+
+                    .add-member {
+                        .add-member-btn {
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                            background: #00ADB5;
+                            color: #EEEEEE;
+                            border: none;
+                            padding: 8px 16px;
+                            border-radius: 4px;
+                            cursor: pointer;
+                            transition: background-color 0.3s;
+
+                            &:hover {
+                                background: darken(#00ADB5, 10%);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Popup Styles
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease;
+}
+
+.popup-content {
+    background: #222831;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s ease;
+
+    .popup-header {
+        padding: 20px;
+        border-bottom: 1px solid rgba(238, 238, 238, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h3 {
+            color: #00ADB5;
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .close-btn {
+            background: transparent;
+            border: none;
+            color: #EEEEEE;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+
+            &:hover {
+                background: rgba(238, 238, 238, 0.1);
+            }
+
+            i {
+                font-size: 24px;
+            }
+        }
+    }
+
+    .popup-body {
+        padding: 20px;
+        overflow-y: auto;
+
+        .search-box {
+            position: relative;
+            margin-bottom: 20px;
+
+            i {
+                position: absolute;
+                left: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: rgba(238, 238, 238, 0.6);
+            }
+
+            input {
+                width: 100%;
+                padding: 12px 12px 12px 40px;
+                background: #393E46;
+                border: 1px solid rgba(238, 238, 238, 0.1);
+                border-radius: 8px;
+                color: #EEEEEE;
+                font-size: 14px;
+
+                &:focus {
+                    outline: none;
+                    border-color: #00ADB5;
+                }
+
+                &::placeholder {
+                    color: rgba(238, 238, 238, 0.4);
+                }
+            }
+        }
+
+        .users-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            .user-item {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 12px;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: background-color 0.2s;
+
+                &:hover {
+                    background: #393E46;
+                }
+
+                &.disabled {
+                    opacity: 0.6;
+                    cursor: not-allowed;
+
+                    &:hover {
+                        background: transparent;
+                    }
+                }
+
+                .user-avatar {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    overflow: hidden;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                .user-info {
+                    flex: 1;
+
+                    .user-name {
+                        display: block;
+                        color: #EEEEEE;
+                        font-size: 14px;
+                    }
+
+                    .user-status {
+                        display: block;
+                        color: rgba(238, 238, 238, 0.4);
+                        font-size: 12px;
+                        margin-top: 4px;
+                    }
+                }
+            }
+        }
+    }
+
+    &.delete-confirm {
+        max-width: 400px;
+
+        .popup-body {
+            p {
+                margin: 0 0 20px 0;
+                line-height: 1.5;
+                color: #EEEEEE;
+
+                strong {
+                    color: #00ADB5;
+                }
+            }
+
+            .confirm-actions {
+                display: flex;
+                gap: 12px;
+                justify-content: flex-end;
+
+                button {
+                    padding: 8px 16px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    transition: background-color 0.2s;
+                }
+
+                .cancel-btn {
+                    background: transparent;
+                    border: 1px solid rgba(238, 238, 238, 0.1);
+                    color: #EEEEEE;
+
+                    &:hover {
+                        background: rgba(238, 238, 238, 0.1);
+                    }
+                }
+
+                .delete-confirm-btn {
+                    background: #e74c3c;
+                    border: none;
+                    color: #EEEEEE;
+
+                    &:hover {
+                        background: darken(#e74c3c, 10%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Animations
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+// Media Queries
+@media (max-width: 768px) {
+    .update-project-container {
+        padding: 16px;
+
+        .content-wrapper {
+            .project-sections {
+                padding: 16px;
+                gap: 16px;
+
+                section {
+                    padding: 16px;
+                }
+            }
+        }
+
+        .progress-input,
+        .member-input {
+            flex-direction: column;
+
+            button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    }
+
+    .popup-content {
+        width: 95%;
+        max-height: 90vh;
+    }
+}

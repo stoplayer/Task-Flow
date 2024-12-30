@@ -1,0 +1,63 @@
+<div class="task-management-container">
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-content">
+            <div class="welcome-section">
+                <h1>Welcome Back!</h1>
+                <h2 class="username">{{ userName }}</h2>
+            </div>
+            <div class="search-section">
+                <div class="search-bar">
+                    <i class="material-icons">search</i>
+                    <input type="text" placeholder="Search tasks...">
+                </div>
+                <button class="filter-button">
+                    <i class="material-icons">tune</i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Completed Projects Section -->
+    <section class="tasks-section">
+        <div class="section-header">
+            <h3>Completed Projects</h3>
+            <button class="see-all-button" routerLink="/dashboard/completed-project">
+                View All <i class="material-icons">arrow_forward</i>
+            </button>
+        </div>
+        <div class="task-cards">
+            <div class="task-card completed" *ngFor="let project of completedProjects">
+                <div class="task-content">
+                    <h4>{{ project.title }}</h4>
+                    <p class="task-status">Completed</p>
+                    <div class="progress-bar">
+                        <div class="progress completed"></div>
+                    </div>
+                    <p class="due-date">End Date: {{ project.endTime }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ongoing Projects Section -->
+    <section class="tasks-section">
+        <div class="section-header">
+            <h3>Ongoing Projects</h3>
+            <button class="see-all-button" routerLink="/dashboard/ongoing-project">
+                View All <i class="material-icons">arrow_forward</i>
+            </button>
+        </div>
+        <div class="task-cards">
+            <div class="task-card" *ngFor="let project of ongoingProjects">
+                <div class="task-content">
+                    <h4>{{ project.title }}</h4>
+                    <p class="due-date">End Date: {{ project.endTime }}</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 40%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

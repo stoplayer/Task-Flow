@@ -1,0 +1,223 @@
+.calendar-container {
+    padding: 32px;
+    background-color: #222831;
+    border-radius: 16px;
+    color: #EEEEEE;
+    min-height: 100vh;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+
+    .header-left {
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+        }
+
+        .current-date {
+            color: #00ADB5;
+            font-size: 16px;
+            margin: 0;
+        }
+    }
+
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        .today-btn {
+            background: #00ADB5;
+            color: #EEEEEE;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: darken(#00ADB5, 5%);
+            }
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 8px;
+        }
+    }
+}
+
+.nav-btn {
+    background: #393E46;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    i {
+        color: #EEEEEE;
+        font-size: 20px;
+    }
+
+    &:hover {
+        background: #00ADB5;
+    }
+}
+
+.calendar-body {
+    background: #393E46;
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 12px;
+}
+
+.weekday {
+    padding: 12px;
+    text-align: center;
+    font-weight: 500;
+    color: rgba(238, 238, 238, 0.7);
+    font-size: 14px;
+}
+
+.day {
+    background: rgba(34, 40, 49, 0.4);
+    border-radius: 12px;
+    min-height: 120px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+
+    &:hover {
+        background: rgba(34, 40, 49, 0.6);
+    }
+
+    &.today {
+        background: rgba(0, 173, 181, 0.1);
+        border: 1px solid #00ADB5;
+
+        .day-number {
+            color: #00ADB5;
+            font-weight: 600;
+        }
+    }
+
+    &.other-month {
+        opacity: 0.5;
+    }
+
+    .day-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+
+        .day-number {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .task-indicator {
+            background: #00ADB5;
+            color: #EEEEEE;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 12px;
+        }
+    }
+
+    .task-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .task-item {
+        padding: 8px;
+        border-radius: 6px;
+        font-size: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateX(4px);
+        }
+
+        &.priority-high {
+            background: rgba(255, 76, 76, 0.1);
+            border-left: 3px solid #ff4c4c;
+        }
+
+        &.priority-medium {
+            background: rgba(255, 159, 67, 0.1);
+            border-left: 3px solid #ff9f43;
+        }
+
+        &.priority-low {
+            background: rgba(0, 173, 181, 0.1);
+            border-left: 3px solid #00ADB5;
+        }
+
+        .task-time {
+            color: #00ADB5;
+            font-weight: 500;
+        }
+
+        .task-title {
+            color: #EEEEEE;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .calendar-container {
+        padding: 16px;
+    }
+
+    .calendar-grid {
+        gap: 8px;
+    }
+
+    .day {
+        min-height: 100px;
+        padding: 8px;
+
+        .task-list {
+            display: none;
+        }
+
+        &:hover .task-list {
+            display: flex;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #393E46;
+            padding: 8px;
+            border-radius: 8px;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+    }
+}

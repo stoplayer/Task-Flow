@@ -1,0 +1,112 @@
+<div class="task-detail-container">
+    <div class="task-header">
+        <div class="title-section">
+            <h2>{{ taskData?.name || 'Loading...' }}</h2>
+            <div class="task-meta">
+                <span class="project-tag">{{ taskData?.projectName || 'Unknown Project' }}</span>
+                <span class="assignee">
+                    <i class="material-icons">person</i>
+                    {{ taskData?.userName || 'Not assigned' }}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="left-panel">
+            <div class="description-box">
+                <label>Description</label>
+                <div class="content-box">
+                    <p>{{ taskData?.description || 'No description available.' }}</p>
+                </div>
+            </div>
+
+            <div class="time-priority-section">
+                <div class="time-box">
+                    <div class="time-item">
+                        <label>Estimated End Time</label>
+                        <div class="content-box">
+                            <i class="material-icons">schedule</i>
+                            <span>{{ taskData?.estimatedEndtime | date: 'medium' }}</span>
+                        </div>
+                    </div>
+                    <div class="time-item">
+                        <label>End Time</label>
+                        <div class="content-box">
+                            <i class="material-icons">event</i>
+                            <span>{{ taskData?.endtime ? (taskData.endtime | date: 'medium') : 'Not ended yet.' }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-box">
+                    <label>Project</label>
+                    <div class="content-box">
+                        <i class="material-icons">work_outline</i>
+                        <span>{{ taskData?.projectName || 'Unknown Project' }}</span>
+                    </div>
+                </div>
+
+                <div class="status-box">
+                    <label>Status</label>
+                    <div class="content-box">
+                        <i class="material-icons">
+                            {{
+                                taskData?.status === 'COMPLETED' ? 'check_circle' :
+                                taskData?.status === 'IN_PROGRESS' ? 'pending' : 'schedule'
+                            }}
+                        </i>
+                        <span>{{ taskData?.status || 'Unknown' }}</span>
+                    </div>
+                </div>
+
+                <div class="priority-box">
+                    <label>Priority</label>
+                    <div class="content-box" [class.priority-high]="taskData?.priority === 'HIGH'">
+                        <i class="material-icons">priority_high</i>
+                        <span>{{ taskData?.priority || 'Not specified' }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="comments-section">
+                <h3>Comments</h3>
+                <div class="comments-list">
+                    <div class="comment-item" *ngFor="let comment of taskData?.comments">
+                        <div class="comment-header">
+                            <div class="user-avatar">
+                                <i class="material-icons">person</i>
+                            </div>
+                            <div class="comment-info">
+                                <span class="user-name">{{ comment.userName }}</span>
+                                <span class="comment-date">{{ comment.createdAt | date: 'medium' }}</span>
+                            </div>
+                        </div>
+                        <p>{{ comment.content }}</p>
+                    </div>
+                    <div *ngIf="!taskData?.comments || taskData?.comments.length === 0" class="no-comments">
+                        No comments yet
+                    </div>
+                </div>
+
+                <div class="comment-input">
+                    <input type="text" placeholder="Add a comment..." [(ngModel)]="newComment" />
+                    <button (click)="addComment()">
+                        <i class="material-icons">send</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div class="loading">
+        <div class="loading-content">
+            <i class="material-icons rotating">sync</i>
+            <p>Loading task details...</p>
+        </div>
+    </div>
+</ng-template>

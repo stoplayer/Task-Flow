@@ -1,0 +1,81 @@
+<div class="ongoing-tasks-container">
+  <!-- Header Section -->
+  <header class="page-header">
+    <div class="header-content">
+      <h1>Ongoing Projects</h1>
+      <p class="subtitle">Overview of your active Projects</p>
+    </div>
+    <div class="header-actions">
+      <div class="search-bar">
+        <i class="material-icons">search</i>
+        <input type="text" placeholder="Search ongoing projects">
+      </div>
+      <button class="filter-btn">
+        <i class="material-icons">tune</i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Projects Grid Section -->
+  <div class="tasks-grid">
+    <!-- Dynamically render all ongoing projects -->
+    <div class="task-card" *ngFor="let project of ongoingTasks">
+      <div class="task-content">
+        <!-- Project Header -->
+        <div class="task-header">
+          <div class="title-section">
+            <h4>{{ project.title }}</h4>
+            <div class="status-team-section">
+              <span class="status-badge">
+                <i class="material-icons">schedule</i>
+                In Progress
+              </span>
+            </div>
+          </div>
+          <div class="task-meta">
+            <span class="due-date">
+              <i class="material-icons">event</i>
+              Due: {{ project.endDate }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Project Stats -->
+        <div class="task-stats">
+          <div class="stat-item">
+            <span class="label">Progress</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar">
+                <div class="progress" [style.width.%]="project.progress"></div>
+              </div>
+              <span class="percentage-value">{{ project.progress }}%</span>
+            </div>
+          </div>
+          <div class="stat-item team-stat">
+            <span class="label">Team Members</span>
+            <div class="team-members">
+              <div class="member-avatars">
+                <div class="member-avatar" *ngFor="let member of project.teamMembers">
+                  <i class="material-icons">person</i>
+                  <span class="member-tooltip">{{ member.name }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Actions -->
+        <div class="task-actions">
+          <button class="action-btn view-btn" (click)="ViewProjectDetails(project.id)">
+            <i class="material-icons">visibility</i>
+            View Details
+          </button>
+          <button class="action-btn update-btn" [routerLink]="['/dashboard/update-project', project.id]">
+            <i class="material-icons">edit</i>
+            Update Progress
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

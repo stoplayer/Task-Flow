@@ -1,0 +1,178 @@
+// dashboard/create-task/create-task.component.scss
+.create-task-container {
+    padding: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.page-header {
+    margin-bottom: 32px;
+
+    h1 {
+        color: #EEEEEE;
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .subtitle {
+        color: rgba(238, 238, 238, 0.7);
+        font-size: 16px;
+    }
+}
+
+.task-form {
+    background: #393E46;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-section {
+    margin-bottom: 24px;
+
+    label {
+        display: block;
+        color: #EEEEEE;
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px;
+    background: #222831;
+    border: 1px solid rgba(238, 238, 238, 0.1);
+    border-radius: 8px;
+    color: #EEEEEE;
+    font-size: 14px;
+    transition: all 0.3s ease;
+
+    &:focus {
+        outline: none;
+        border-color: #00ADB5;
+    }
+
+    &.textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.team-members {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.team-member {
+    input[type="checkbox"] {
+        display: none;
+
+        &:checked+.member-label {
+            background: rgba(0, 173, 181, 0.2);
+            border-color: #00ADB5;
+        }
+    }
+
+    .member-label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        background: #222831;
+        border: 1px solid rgba(238, 238, 238, 0.1);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: rgba(0, 173, 181, 0.1);
+        }
+
+        img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        span {
+            color: #EEEEEE;
+            font-size: 14px;
+        }
+    }
+}
+
+.add-member-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(0, 173, 181, 0.1);
+    border: none;
+    border-radius: 8px;
+    color: #00ADB5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: rgba(0, 173, 181, 0.2);
+    }
+
+    i {
+        font-size: 20px;
+    }
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 32px;
+
+    button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .cancel-btn {
+        background: transparent;
+        border: 1px solid rgba(238, 238, 238, 0.1);
+        color: #EEEEEE;
+
+        &:hover {
+            background: rgba(238, 238, 238, 0.1);
+        }
+    }
+
+    .create-btn {
+        background: #00ADB5;
+        border: none;
+        color: #EEEEEE;
+
+        &:hover {
+            background: darken(#00ADB5, 5%);
+        }
+
+        i {
+            font-size: 20px;
+        }
+    }
+}

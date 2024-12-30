@@ -1,0 +1,305 @@
+// update-task.component.scss
+.update-task-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px;
+    color: #EEEEEE;
+
+    .back-navigation {
+        margin-bottom: 24px;
+
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: none;
+            color: #00ADB5;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+
+            i {
+                font-size: 20px;
+            }
+
+            &:hover {
+                background: rgba(0, 173, 181, 0.1);
+                transform: translateX(-4px);
+            }
+        }
+    }
+
+    .update-form {
+        background: #222831;
+        border-radius: 8px;
+        padding: 24px;
+
+        h2 {
+            color: #00ADB5;
+            margin: 0 0 24px 0;
+        }
+
+        .task-info {
+            display: grid;
+            gap: 20px;
+
+            .info-group {
+                label {
+                    display: block;
+                    margin-bottom: 8px;
+                    color: rgba(238, 238, 238, 0.6);
+                    font-size: 14px;
+                }
+
+                .content-box {
+                    background: #393E46;
+                    padding: 12px;
+                    border-radius: 6px;
+                    border: 1px solid rgba(238, 238, 238, 0.1);
+                    color: #EEEEEE;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+
+                    i {
+                        color: #00ADB5;
+                        font-size: 20px;
+                    }
+
+                    &.description {
+                        min-height: 100px;
+                        align-items: flex-start;
+                    }
+
+                    &.priority-high {
+                        border-color: #ff4757;
+
+                        i {
+                            color: #ff4757;
+                        }
+                    }
+
+                    &:focus-within {
+                        border-color: #00ADB5;
+                    }
+                }
+
+                .status-select-container {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    background: #393E46;
+                    padding: 8px 12px;
+                    border-radius: 6px;
+                    border: 1px solid rgba(238, 238, 238, 0.1);
+
+                    .status-select {
+                        flex: 1;
+                        background: transparent;
+                        border: none;
+                        color: #EEEEEE;
+                        font-size: 14px;
+                        padding: 4px;
+                        cursor: pointer;
+                        outline: none;
+
+                        option {
+                            background: #222831;
+                            color: #EEEEEE;
+                            padding: 8px;
+                        }
+                    }
+
+                    .status-icon {
+                        color: #00ADB5;
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+
+        .form-actions {
+            margin-top: 32px;
+
+            .submit-btn {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                background: #00ADB5;
+                color: #EEEEEE;
+                border: none;
+                padding: 12px 24px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: background-color 0.3s;
+
+                &:hover {
+                    background: darken(#00ADB5, 10%);
+                }
+
+                i {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+
+    .loading-content {
+        text-align: center;
+        color: #EEEEEE;
+
+        i {
+            font-size: 40px;
+            color: #00ADB5;
+            margin-bottom: 16px;
+
+            &.rotating {
+                animation: rotate 1s linear infinite;
+            }
+        }
+    }
+}
+
+.edit-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #EEEEEE;
+    font-size: 14px;
+    padding: 4px;
+    outline: none;
+
+    &:focus {
+        background: rgba(0, 173, 181, 0.1);
+    }
+
+    &.description {
+        resize: vertical;
+        min-height: 100px;
+        font-family: inherit;
+    }
+
+    &::placeholder {
+        color: rgba(238, 238, 238, 0.4);
+    }
+}
+
+select.edit-input {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300ADB5'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 20px;
+    padding-right: 30px;
+
+    option {
+        background: #222831;
+        color: #EEEEEE;
+        padding: 8px;
+    }
+}
+
+input[type="datetime-local"].edit-input {
+    color-scheme: dark;
+
+    &::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+        opacity: 0.6;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .update-task-container {
+        padding: 16px;
+
+        .update-form {
+            padding: 16px;
+
+            .task-info {
+                gap: 16px;
+            }
+        }
+
+        .back-navigation {
+            margin-bottom: 16px;
+        }
+    }
+}
+
+// Add hover effects for interactive elements
+.content-box,
+.status-select-container {
+    transition: border-color 0.3s ease;
+
+    &:hover {
+        border-color: rgba(0, 173, 181, 0.3);
+    }
+}
+
+// Error state styles
+.error {
+    border-color: #ff4757 !important;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+// Success state styles
+.success {
+    border-color: #2ecc71 !important;
+}
+
+// Disabled state styles
+.content-box.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    input,
+    select,
+    textarea {
+        pointer-events: none;
+    }
+}

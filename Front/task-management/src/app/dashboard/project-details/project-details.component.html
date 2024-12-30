@@ -1,0 +1,139 @@
+<div class="project-details-container">
+  <!-- Project Overview Section -->
+  <section class="project-info">
+      <div class="project-header">
+          <div class="header-content">
+              <h1>{{ projectData?.name || 'Loading...' }}</h1>
+              <p class="project-description">{{ projectData?.description || 'No description available.' }}</p>
+          </div>
+          <div class="project-status">
+              <div class="status-item">
+                  <span class="label">Budget</span>
+                  <span class="value">{{ projectData?.budget | currency }}</span>
+              </div>
+              <div class="status-item">
+                  <span class="label">Estimated End Date</span>
+                  <span class="value">{{ projectData?.estimatedEndtime | date:'mediumDate' }}</span>
+              </div>
+              <div class="status-item">
+                  <span class="label">End Date</span>
+                  <span class="value">{{ (projectData?.endtime| date:'mediumDate') || 'Not ended yet' }}</span>
+              </div>
+          </div>
+      </div>
+
+      <div class="project-team">
+          <h3>Team Members</h3>
+          <div class="team-members">
+              <div *ngIf="projectData?.team?.length === 0">No team members assigned.</div>
+              <div class="member-avatar" *ngFor="let member of projectData?.team">
+                  <img src="assets/avatar-placeholder.jpg" alt="{{ member.name }}">
+                  <span class="member-name">{{ member.name || 'Unknown' }}</span>
+                  <span class="member-role">{{ member.role || 'Not specified' }}</span>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Task Creation Section -->
+  <section class="task-creation">
+      <div class="section-header">
+          <h2>Create New Task</h2>
+          <button class="add-task-btn" (click)="addTask()">
+              <i class="material-icons">add</i>
+              New Task
+          </button>
+      </div>
+
+      <div class="task-form">
+          <div class="form-row">
+              <div class="form-group">
+                  <label>Task Name</label>
+                  <input
+                      type="text"
+                      placeholder="Enter task name"
+                      [(ngModel)]="taskData.name"
+                  />
+              </div>
+              <div class="form-group">
+                  <label>Estimated End Time</label>
+                  <input
+                      type="datetime-local"
+                      [(ngModel)]="taskData.estimatedEndtime"
+                  />
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label>Task Description</label>
+              <textarea
+                  rows="3"
+                  placeholder="Enter task description"
+                  [(ngModel)]="taskData.description"
+              ></textarea>
+          </div>
+
+          <div class="form-row">
+              
+              <div class="form-group">
+                  <label>Priority</label>
+                  <select [(ngModel)]="taskData.priority">
+                      <option value="LOW">Low</option>
+                      <option value="MEDIUM">Medium</option>
+                      <option value="HIGH">High</option>
+                  </select>
+              </div>
+          </div>   
+      </div>
+  </section>
+
+  <!-- Tasks List Section -->
+<section class="tasks-list">
+    <div class="section-header">
+        <h2>Project Tasks</h2>
+        <div class="task-filters">
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">In Progress</button>
+            <button class="filter-btn">Completed</button>
+        </div>
+    </div>
+
+    <div class="tasks-grid">
+        <div *ngIf="projectData?.tasks?.length === 0">No tasks available for this project.</div>
+        <div class="task-card" *ngFor="let task of projectData?.tasks">
+            <div class="task-header">
+                <h4>{{ task.name }}</h4>
+                <span class="priority" [ngClass]="task.priority.toLowerCase()">{{ task.priority }}</span>
+            </div>
+            <p class="task-description">{{ task.description }}</p>
+            <div class="task-meta">
+                <span class="due-date">
+                    <i class="material-icons">event</i>
+                    {{ task.estimatedEndtime | date:'mediumDate' }}
+                </span>
+                <div class="assigned-to">
+                    <img src="assets/avatar-placeholder.jpg" >
+                    {{task.user.name}}
+                </div>
+            </div>
+            <div class="task-progress">
+                <div class="progress-bar">
+                    <div class="progress" style="width: 75%"></div>
+                </div>
+                <span>75%</span>
+            </div>
+            <div class="task-actions">
+                <button class="action-btn view-btn" [routerLink]="['/dashboard/task', task.id]">
+                    <i class="material-icons">visibility</i>
+                    View Details
+                </button>
+                <button class="action-btn update-btn" [routerLink]="['/dashboard/update-task', task.id]">
+                    <i class="material-icons">edit</i>
+                    Update Task
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>

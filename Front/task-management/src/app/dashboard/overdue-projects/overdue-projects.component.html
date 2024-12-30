@@ -1,0 +1,62 @@
+<div class="overdue-tasks-container">
+    <header class="page-header">
+      <div class="header-content">
+        <h1>Overdue Tasks</h1>
+        <p class="subtitle">Tasks that require immediate attention</p>
+      </div>
+      <div class="header-actions">
+        <div class="search-bar">
+          <i class="material-icons">search</i>
+          <input type="text" placeholder="Search overdue tasks">
+        </div>
+        <button class="filter-btn">
+          <i class="material-icons">tune</i>
+        </button>
+      </div>
+    </header>
+  
+    <div *ngIf="isLoading" class="loading">
+      <p>Loading overdue tasks...</p>
+    </div>
+  
+    <div class="task-list" *ngIf="!isLoading && overdueTasks.length > 0">
+      <div class="task-card" *ngFor="let task of overdueTasks">
+        <div class="priority-indicator" [class.high]="task.priority === 'HIGH'"
+             [class.medium]="task.priority === 'MEDIUM'" [class.low]="task.priority === 'LOW'"></div>
+        <div class="task-content">
+          <div class="task-header">
+            <h3>{{ task.title }}</h3>
+            <span class="overdue-badge">
+              <i class="material-icons">warning</i>
+              {{ task.daysOverdue }} days overdue
+            </span>
+          </div>
+          <p class="task-description">{{ task.description }}</p>
+          <div class="task-meta">
+            <div class="meta-item">
+              <i class="material-icons">event</i>
+              <span>Due: {{ task.dueDate }}</span>
+            </div>
+            <div class="meta-item">
+              <i class="material-icons">person</i>
+              <span>Assigned to: {{ task.assignedTo }}</span>
+            </div>
+          </div>
+          <div class="task-footer">
+            <div class="task-tags">
+              <span class="tag">{{ task.priority }} Priority</span>
+            </div>
+            <button class="complete-btn" (click)="markComplete(task)">
+              <i class="material-icons">check</i>
+              Complete Task
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="!isLoading && overdueTasks.length === 0" class="no-tasks">
+      <p>No overdue tasks found.</p>
+    </div>
+  </div>
+  

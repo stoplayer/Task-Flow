@@ -1,0 +1,213 @@
+.task-management-container {
+    padding: 32px;
+    background-color: #222831;
+    min-height: 100vh;
+    color: #EEEEEE;
+}
+
+// Header Styles
+.header {
+    margin-bottom: 48px;
+
+    .header-content {
+        max-width: 1200px;
+
+    }
+
+    .welcome-section {
+        margin-bottom: 24px;
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #EEEEEE;
+        }
+
+        .username {
+            font-size: 20px;
+            color: #00ADB5;
+            font-weight: 500;
+        }
+    }
+
+    .search-section {
+        display: flex;
+        gap: 16px;
+        max-width: 600px;
+
+        .search-bar {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: #393E46;
+            border-radius: 12px;
+            padding: 0 16px;
+
+            i {
+                color: rgba(238, 238, 238, 0.5);
+                margin-right: 12px;
+            }
+
+            input {
+                flex: 1;
+                background: none;
+                border: none;
+                padding: 14px 0;
+                color: #EEEEEE;
+                font-size: 15px;
+
+                &::placeholder {
+                    color: rgba(238, 238, 238, 0.5);
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+
+        .filter-button {
+            background: #393E46;
+            border: none;
+            border-radius: 12px;
+            width: 48px;
+            color: #EEEEEE;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            i {
+                font-size: 24px;
+            }
+
+            &:hover {
+                background: #00ADB5;
+            }
+        }
+    }
+}
+
+// Tasks Section
+.tasks-section {
+    margin-bottom: 48px;
+
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+
+        h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #EEEEEE;
+        }
+
+        .see-all-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border: none;
+            color: #00ADB5;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+                color: #33C4D6;
+            }
+
+            i {
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+// Task Cards
+.task-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.task-card {
+    background: #393E46;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .task-content {
+        padding: 24px;
+
+        h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #EEEEEE;
+            margin: 0 0 12px 0;
+        }
+
+        .task-status,
+        .due-date {
+            font-size: 14px;
+            color: rgba(238, 238, 238, 0.7);
+            margin-bottom: 16px;
+        }
+    }
+
+    // Progress Bar
+    .progress-bar {
+        height: 8px;
+        background: rgba(238, 238, 238, 0.1);
+        border-radius: 4px;
+        position: relative;
+        overflow: hidden;
+
+        .progress {
+            height: 100%;
+            background: #00ADB5;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+
+            &.completed {
+                width: 100%;
+            }
+        }
+
+        .progress-text {
+            position: absolute;
+            right: 0;
+            top: -24px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #00ADB5;
+        }
+    }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+    .task-management-container {
+        padding: 20px;
+    }
+
+    .header {
+        .search-section {
+            flex-direction: column;
+        }
+    }
+
+    .task-cards {
+        grid-template-columns: 1fr;
+    }
+}

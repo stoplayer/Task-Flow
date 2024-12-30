@@ -1,0 +1,86 @@
+<div class="create-task-container">
+    <header class="page-header">
+      <h1>Create New Project</h1>
+      <p class="subtitle">Add a project</p>
+    </header>
+  
+    <div class="task-form">
+      <!-- Project Title -->
+      <div class="form-section">
+        <label>Project Title</label>
+        <input
+          type="text"
+          [(ngModel)]="name"
+          placeholder="Enter project title"
+          class="form-input"
+        />
+      </div>
+  
+      <!-- Project Description -->
+      <div class="form-section">
+        <label>Project Description</label>
+        <textarea
+          [(ngModel)]="description"
+          placeholder="Enter project details"
+          class="form-input textarea"
+        ></textarea>
+      </div>
+  
+      <!-- Project Dates -->
+      <div class="form-row">
+        <div class="form-section">
+          <label>Estimated End Date</label>
+          <input
+            type="date"
+            [(ngModel)]="estimatedEndtime"
+            class="form-input"
+          />
+        </div>
+  
+        <!-- <div class="form-section">
+          <label>End Date</label>
+          <input type="date" [(ngModel)]="endtime" class="form-input" />
+        </div>
+      </div> -->
+  
+      <!-- Budget -->
+      <div class="form-section">
+        <label>Budget</label>
+        <input
+          type="number"
+          [(ngModel)]="budget"
+          placeholder="Enter project budget"
+          class="form-input"
+        />
+      </div>
+      <!-- <div class="form-section">
+            <label>Assign Team Members</label>
+            <div class="team-members">
+                @for (member of teamMembers; track member.id) {
+                <div class="team-member">
+                    <input type="checkbox" [id]="'member' + member.id">
+                    <label [for]="'member' + member.id" class="member-label">
+                        <img [src]="member.avatar" [alt]="member.name">
+                        <span>{{member.name}}</span>
+                    </label>
+                </div>
+                }
+                <button class="add-member-btn">
+                    <i class="material-icons">add_circle</i>
+                    <span>Add Member</span>
+                </button>
+            </div>
+        </div> -->
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button class="cancel-btn" >
+          Cancel
+        </button>
+        <button class="create-btn" (click)="createProject()">
+          <i class="material-icons">check</i>
+          Create Project
+        </button>
+      </div>
+    </div>
+  </div>
+  

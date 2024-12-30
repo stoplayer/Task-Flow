@@ -1,0 +1,244 @@
+// overdue-tasks.component.scss
+.overdue-tasks-container {
+    padding: 24px;
+    min-height: 100vh;
+    
+}
+
+.page-header {
+    padding: 24px;
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+
+    .header-content {
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #EEEEEE;
+            margin: 0 0 8px 0;
+        }
+
+        .subtitle {
+            color: rgba(238, 238, 238, 0.7);
+            font-size: 16px;
+            margin: 0;
+        }
+    }
+
+    .header-actions {
+        display: flex;
+        gap: 16px;
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: #393E46;
+            border-radius: 8px;
+            padding: 0 16px;
+            width: 300px;
+
+            i {
+                color: rgba(238, 238, 238, 0.5);
+                margin-right: 12px;
+            }
+
+            input {
+                background: none;
+                border: none;
+                color: #EEEEEE;
+                padding: 12px 0;
+                width: 100%;
+
+                &::placeholder {
+                    color: rgba(238, 238, 238, 0.5);
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+
+        .filter-btn {
+            background: #393E46;
+            border: none;
+            border-radius: 8px;
+            width: 42px;
+            color: #EEEEEE;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: #00ADB5;
+            }
+        }
+    }
+}
+
+.task-list {
+    display: grid;
+    gap: 20px;
+}
+
+.task-card {
+    display: flex;
+    background: #393E46;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .priority-indicator {
+        width: 4px;
+        background: #00ADB5;
+    }
+
+    .task-content {
+        flex: 1;
+        padding: 20px;
+    }
+
+    .task-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 16px;
+
+        h3 {
+            margin: 0;
+            color: #EEEEEE;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .overdue-badge {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(255, 68, 68, 0.1);
+            color: #ff4444;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+
+            i {
+                font-size: 16px;
+            }
+        }
+    }
+
+    .task-description {
+        color: rgba(238, 238, 238, 0.7);
+        margin: 0 0 16px 0;
+        line-height: 1.5;
+    }
+
+    .task-meta {
+        display: flex;
+        gap: 24px;
+        margin-bottom: 20px;
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(238, 238, 238, 0.6);
+            font-size: 14px;
+
+            i {
+                font-size: 18px;
+            }
+        }
+    }
+
+    .task-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .task-tags {
+            display: flex;
+            gap: 8px;
+
+            .tag {
+                background: rgba(0, 173, 181, 0.1);
+                color: #00ADB5;
+                padding: 4px 12px;
+                border-radius: 16px;
+                font-size: 12px;
+                font-weight: 500;
+            }
+        }
+
+        .complete-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #00ADB5;
+            color: #EEEEEE;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            i {
+                font-size: 18px;
+            }
+
+            &:hover {
+                background: darken(#00ADB5, 5%);
+            }
+        }
+    }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+    .page-header {
+        flex-direction: column;
+
+        .header-actions {
+            width: 100%;
+
+            .search-bar {
+                width: 100%;
+            }
+        }
+    }
+
+    .task-card {
+        .task-header {
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .task-footer {
+            flex-direction: column;
+            gap: 16px;
+
+            .task-tags {
+                order: 2;
+            }
+
+            .complete-btn {
+                width: 100%;
+                justify-content: center;
+                order: 1;
+            }
+        }
+    }
+}
